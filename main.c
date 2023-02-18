@@ -1,9 +1,31 @@
 //Copyright (c) 2023 Whitecat6142
 //BSD 3-clause license
 
-//Original
-//Copyright (c) Camilla Löwy <elmindreda@glfw.org>
-//BSD 3-clause license
+//Original zlib/libpng license
+//========================================================================
+// OpenGL triangle example
+// Copyright (c) Camilla Löwy <elmindreda@glfw.org>
+//
+// This software is provided 'as-is', without any express or implied
+// warranty. In no event will the authors be held liable for any damages
+// arising from the use of this software.
+//
+// Permission is granted to anyone to use this software for any purpose,
+// including commercial applications, and to alter it and redistribute it
+// freely, subject to the following restrictions:
+//
+// 1. The origin of this software must not be misrepresented; you must not
+//    claim that you wrote the original software. If you use this software
+//    in a product, an acknowledgment in the product documentation would
+//    be appreciated but is not required.
+//
+// 2. Altered source versions must be plainly marked as such, and must not
+//    be misrepresented as being the original software.
+//
+// 3. This notice may not be removed or altered from any source
+//    distribution.
+//
+//========================================================================
 
 #define GLAD_GL_IMPLEMENTATION
 #include <glad/gl.h>
@@ -102,7 +124,7 @@ int main(void){
     glfwMakeContextCurrent(window);
     gladLoadGL(glfwGetProcAddress);
     glfwSwapInterval(1);
-    
+
     const GLuint vertex_shader = glCreateShader(GL_VERTEX_SHADER);
     glShaderSource(vertex_shader, 1, &vertex_shader_text, NULL);
     glCompileShader(vertex_shader);
@@ -125,7 +147,7 @@ int main(void){
     glGenBuffers(1, &vertex_buffer);
     glBindBuffer(GL_ARRAY_BUFFER, vertex_buffer);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-    
+
     GLuint vertex_array;
     glGenVertexArrays(1, &vertex_array);
     glBindVertexArray(vertex_array);
