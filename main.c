@@ -108,6 +108,7 @@ int main(void){
     if (!glfwInit())
         exit(EXIT_FAILURE);
 
+    //https://www.glfw.org/docs/latest/window_guide.html
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
@@ -119,6 +120,7 @@ int main(void){
         exit(EXIT_FAILURE);
     }
 
+    //https://www.glfw.org/docs/latest/input_guide.html
     glfwSetKeyCallback(window, key_callback);
 
     glfwMakeContextCurrent(window);
