@@ -55,7 +55,7 @@ static const char* vertex_shader_text =
 "in vec2 vPos;\n"
 "void main(){\n"
 "    gl_Position = MVP * vec4(vPos, 0.0, 1.0);\n"
-"};
+"};";
 
 //based on
 //https://glslsandbox.com/e#99732.2
