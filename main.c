@@ -73,7 +73,7 @@ static const char* fragment_shader_text =
 "	t += .0078125 / (abs(length(p + position) - radius));\n"
 "}\n"
 "void drawFlash(vec2 position, inout float t){\n"
-"	t += .0001220703125 / (abs(p.x + position.x) * abs(p.y + position.y)) * (1.125 - sin(time*.125));\n"
+"	t += .0001220703125 / (abs(p.x + position.x) * abs(p.y + position.y)) * (1.25- sin(time*.125));\n"
 "}\n"
 "void main(){\n"
 "	p = (gl_FragCoord.xy * 2. - resolution) / min(resolution.x, resolution.y);\n"
@@ -82,7 +82,7 @@ static const char* fragment_shader_text =
 "	\n"
 "	for(int j=1; j<3; j++){\n"
 "		for(int i=0; i<5; i++){\n"
-"			float phi = time + (float(i) + float(j) * sin(time)) * P0;\n"
+"			float phi = time + (float(i) + float(j) * sin(time*.90625)) * P0;\n"
 "			float s = sin(phi);\n"
 "			float c = cos(phi);\n"
 "			\n"
@@ -166,7 +166,7 @@ int main(void){
 
         mat4x4 m, p, mvp;
         mat4x4_identity(m);
-        mat4x4_rotate_Z(m, m, (float) glfwGetTime());
+        mat4x4_rotate_Z(m, m, (float) glfwGetTime()*0.90625);
         mat4x4_ortho(p, -ratio, ratio, -1.f, 1.f, 1.f, -1.f);
         mat4x4_mul(mvp, p, m);
 
