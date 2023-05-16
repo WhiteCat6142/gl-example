@@ -10,7 +10,7 @@ SHELL=/bin/bash
 
 TARGET=main
 CXXFLAGS=-Iglfw/deps
-LDLIBS=-lglfw
+LDLIBS=-lglfw3
 OBJS = main.o
 
 
