@@ -28,7 +28,7 @@ build: main.c
 #https://github.com/glfw/glfw
 install_glfw:
 	cmake -S glfw -B glfw/build
-	cd glfw/build && $(MAKE) && $(MAKE) install
+	cd glfw/build && $(MAKE) && sudo $(MAKE) install
 
 uninstall_glfw:
 	cd glfw/build && $(MAKE) uninstall
