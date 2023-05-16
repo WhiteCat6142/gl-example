@@ -4,6 +4,8 @@
 #https://www.gnu.org/software/make/manual/html_node/Implicit-Variables.html
 #https://stackoverflow.com/questions/12054858/add-so-and-a-libraries-to-makefile
 
+#https://stackoverflow.com/questions/71894605/make-cant-find-files-from-github-action
+
 SHELL=/bin/bash
 
 TARGET=main
@@ -26,10 +28,10 @@ build: main.c
 #https://github.com/glfw/glfw
 install_glfw:
 	cmake -S glfw -B glfw/build
-	cd glfw/build && $(make) && $(make) install
+	cd glfw/build && $(MAKE) && $(MAKE) install
 
 uninstall_glfw:
-	cd glfw/build && $(make) uninstall
+	cd glfw/build && $(MAKE) uninstall
  
 clean:
 	rm -f $(OBJS) $(TARGET)
