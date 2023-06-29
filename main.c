@@ -49,6 +49,8 @@ static const Vertex vertices[3] =
     { {   0.f,  1.04f } }
 };
 
+//https://wlog.flatlib.jp/2013/08/13/n1633/
+//https://stackoverflow.com/questions/51459596/using-gl-fragcolor-vs-out-vec4-color
 static const char* vertex_shader_text =
 "#version 430\n"
 "uniform mat4 MVP;\n"

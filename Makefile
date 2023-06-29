@@ -21,8 +21,7 @@ submodule: glfw
 
 #https://stackoverflow.com/questions/17768008/how-to-build-install-glfw-3-and-use-it-in-a-linux-project
 build: main.c
-	$(CXX) -c $^ $(CXXFLAGS)
-	$(CXX) $(OBJS) -o $(TARGET) $(LDLIBS)
+	$(CXX) $^  -o $(TARGET) $(LDLIBS) $(CXXFLAGS)
 
 #https://www.glfw.org/docs/latest/compile.html
 #https://github.com/glfw/glfw
