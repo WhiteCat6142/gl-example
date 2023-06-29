@@ -50,9 +50,10 @@ static const Vertex vertices[3] =
 };
 
 static const char* vertex_shader_text =
-"#version 330\n"
+"#version 430\n"
 "uniform mat4 MVP;\n"
 "in vec2 vPos;\n"
+"layout(location=0)out vec4 fragcolor;"
 "void main(){\n"
 "    gl_Position = MVP * vec4(vPos, 0.0, 1.0);\n"
 "};";
@@ -61,22 +62,22 @@ static const char* vertex_shader_text =
 //https://glslsandbox.com/e#99732.2
 //imagine graph min{1/|x-r|,1}
 static const char* fragment_shader_text =
-"#version 330\n"
+"#version 430\n"
 "uniform float time;\n"
 "uniform vec2 resolution;\n"
 "in vec4 gl_FragCoord;\n"
+"out vec4 fragcolor;\n"
 "const float PI = 3.14;\n"
 "const float P0= (PI * 2.) / 5.;\n"
 "\n"
-"vec2 p = vec2(1.);\n"
-"void drawCircle(vec2 position, float radius, inout float t){\n"
+"void drawCircle(vec2 position, float radius, inout float t, vec2 p){\n"
 "	t += .0078125 / (abs(length(p + position) - radius));\n"
 "}\n"
-"void drawFlash(vec2 position, inout float t){\n"
+"void drawFlash(vec2 position, inout float t, vec2 p){\n"
 "	t += .0001220703125 / (abs(p.x + position.x) * abs(p.y + position.y)) * (1.25- sin(time*.125));\n"
 "}\n"
 "void main(){\n"
-"	p = (gl_FragCoord.xy * 2. - resolution) / min(resolution.x, resolution.y);\n"
+"  vec2 p = (gl_FragCoord.xy * 2. - resolution) / min(resolution.x, resolution.y);\n"
 "	vec3 destColor = vec3(p, .125);\n"
 "	float t = 0.;\n"
 "	\n"
@@ -86,11 +87,11 @@ static const char* fragment_shader_text =
 "			float s = sin(phi);\n"
 "			float c = cos(phi);\n"
 "			\n"
-"			drawCircle(vec2(c, s)*.15625, .15625, t);\n"
-"			drawFlash(vec2(c, s)*.78125, t);\n"
+"			drawCircle(vec2(c, s)*.15625, .15625, t, p);\n"
+"			drawFlash(vec2(c, s)*.78125, t, p);\n"
 "		}\n"
 "	}\n"
-"	gl_FragColor = vec4(destColor * t, 1.);\n"
+"	fragcolor = vec4(destColor * t,  1.);\n"
 "}";
 
 static void error_callback(int error, const char* description){
@@ -109,7 +110,7 @@ int main(void){
         exit(EXIT_FAILURE);
 
     //https://www.glfw.org/docs/latest/window_guide.html
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     glfwWindowHint(GLFW_CONTEXT_CREATION_API, GLFW_EGL_CONTEXT_API);
