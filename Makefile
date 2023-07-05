@@ -14,6 +14,16 @@ LDLIBS=-lglfw3
 OBJS = main.o
 
 
+#https://stackoverflow.com/questions/19146525/meaning-of-library-dl-in-gcc
+#https://stackoverflow.com/questions/714100/os-detecting-makefile
+UNAME_S := $(shell uname -s)
+ifeq ($(UNAME_S),Linux)
+        LDLIBS += -ldl
+endif
+ifeq ($(UNAME_S),Darwin)
+        LDLIBS += -framework OpenGL -framework Cocoa -framework IOKit -framework Corevideo 
+endif
+
 all:submodule install_glfw build
 
 submodule: glfw
